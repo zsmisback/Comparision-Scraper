@@ -1,8 +1,19 @@
 <?php
 
+if($_SERVER['REQUEST_METHOD'] == "POST")
+{ getcricketerdata($_POST['cricketer1'],$_POST['cricketcountry1']);
+  ob_clean();
+  getcricketerdata($_POST['cricketer2'],$_POST['cricketcountry2']);}	
+
+function getcricketerdata($playername,$playercountry)
+{
+
 include('config.php');
   
-include('simple_html_dom.php');
+include_once('simple_html_dom.php');
+
+$_POST['cricketer1'] = $playername;
+$_POST['cricketcountry1'] = $playercountry;
 
 $starttest= 0;
           $startodi = 0;
@@ -11,15 +22,21 @@ $starttest= 0;
 		  $startlist = 0;
 		  $startt20s = 0;
 		  
+		  $starttest2= 0;
+$startodi2 = 0;
+$startt20is2 = 0;
+$startfirst2 = 0;
+$startlist2 = 0;
+$startt20s2 = 0;
+		  
 $cricket1 = "";
 
 $error = "";
 
-if(isset($_POST['compare']))
-{   
-    $cricket1 = $db->real_escape_string($_POST['cricketer1']);
+  
+    $cricket1 = $db->real_escape_string($playername);
 	
-	$crickcountry1 = $_POST['cricketcountry1'];
+	$crickcountry1 = $playercountry;
 	
 	
 	if(empty($cricket1))
@@ -60,11 +77,14 @@ if(isset($_POST['compare']))
 		   
         foreach($html->find("a[href^=/$cricketcountryarray]") as $link)
 		{
-			if(!$link->href)
-			{
-				$error = "This player does not exist/The player and the country do not match";
-			}
+			
 		}
+		if(!$link->href)
+			{
+				echo "<script>alert(This player does not exist in the database);</script>";
+			}
+		else
+		{			
 		  $getlink = $link->href;
 		  
 		  $mainlink = "espncricinfo.com$getlink";
@@ -135,44 +155,135 @@ if(isset($_POST['compare']))
 	     }
 		 
 		 
-		 for($j = $starttest;$j<$startodi;$j++)
+		 for($j = $starttest+1;$j<=$startodi;$j++)
 		 {
 			 $test[] = $list2[$j]->plaintext;
 			 
 			 
 			
 		 }
-		 for($k = $startodi+1;$k<$startt20is;$k++)
+		 for($k = $startodi+1;$k<=$startt20is;$k++)
 		 {
 			 $odi[] = $list2[$k]->plaintext;
 			 
 			 
 			
 		 }
-		 for($l = $startt20is+1;$l<$startfirst;$l++)
+		 for($l = $startt20is+1;$l<=$startfirst;$l++)
 		 {
 			 $t20i[] = $list2[$l]->plaintext;
 			 
 			 
 			
 		 }
-		 for($m = $startfirst+1;$m<$startlist;$m++)
+		 for($m = $startfirst+1;$m<=$startlist;$m++)
 		 {
 			 $first_c[] = $list2[$m]->plaintext;
 			 
 			 
 			
 		 }
-		 for($n = $startlist+1;$n<$startt20s;$n++)
+		 for($n = $startlist+1;$n<=$startt20s;$n++)
 		 {
 			 $list_a[] = $list2[$n]->plaintext;
 			 
 			 
 			
 		 }
-		 for($o = $startt20s+1;$o<90;$o++)
+		 for($o = $startt20s+1;$o<=90;$o++)
 		 {
 			 $t20[] = $list2[$o]->plaintext;
+			 
+			 
+			
+		 }
+		   for($s=90;$s<174;$s++)
+         {
+             		
+                               					
+	        
+		 
+		   if($list2[$s]->plaintext === "Tests")
+		   {
+			   
+			   $starttest2 = $s;
+			   
+		   }
+		   if($list2[$s]->plaintext === "ODIs")
+		   {
+			   
+			   $startodi2 = $s;
+			   
+		   }
+		   if($list2[$s]->plaintext === "T20Is")
+		   {
+			   
+			   $startt20is2 = $s;
+			   
+		   }
+		   if($list2[$s]->plaintext === "First-class")
+		   {
+			   
+			   $startfirst2 = $s;
+			   
+		   }
+		   if($list2[$s]->plaintext === "List A")
+		   {
+			   
+			   $startlist2 = $s;
+			  
+		   }
+		   if($list2[$s]->plaintext === "T20s")
+		   {
+			   
+			   $startt20s2 = $s;
+			   
+		   }
+		   
+		   
+		   
+			
+	     }
+		 
+		 
+		 for($t = $starttest2+1;$t<=$startodi2;$t++)
+		 {
+			 $test2[] = $list2[$t]->plaintext;
+			 
+			 
+			
+		 }
+		 for($u = $startodi2+1;$u<=$startt20is2;$u++)
+		 {
+			 $odi2[] = $list2[$u]->plaintext;
+			 
+			 
+			
+		 }
+		 for($v = $startt20is2+1;$v<=$startfirst2;$v++)
+		 {
+			 $t20i2[] = $list2[$v]->plaintext;
+			 
+			 
+			
+		 }
+		 for($w = $startfirst2+1;$w<=$startlist2;$w++)
+		 {
+			 $first_c2[] = $list2[$w]->plaintext;
+			 
+			 
+			
+		 }
+		 for($x = $startlist2+1;$x<=$startt20s2;$x++)
+		 {
+			 $list_a2[] = $list2[$x]->plaintext;
+			 
+			 
+			
+		 }
+		 for($y = $startt20s2+1;$y<=174;$y++)
+		 {
+			 $t202[] = $list2[$y]->plaintext;
 			 
 			 
 			
@@ -222,6 +333,49 @@ if(isset($_POST['compare']))
 				 break;
 				 continue;
 			   }
+			   if($r == sizeof($test2))
+			   {
+				   
+				 
+				 break;
+				 continue;
+			   }
+			   if($r == sizeof($odi2))
+			   {
+				   
+				 
+				 break;
+				 continue;
+			   }
+			   if($r == sizeof($t20i2))
+			   {
+				   
+				 
+				 break;
+				 continue;
+			   }
+			   if($r == sizeof($first_c2))
+			   {
+				   
+				 
+				 break;
+				 continue;
+			   }
+			   if($r == sizeof($list_a2))
+			   {
+				   
+				 
+				 break;
+				 continue;
+			   }
+			   if($r == sizeof($t202))
+			   {
+				   
+				 
+				 break;
+				 continue;
+			   }
+			   
 			   $inserttest = $test[$r];
 			   $insertodi = $odi[$r];
 			   $insertt20i = $t20i[$r];
@@ -229,13 +383,22 @@ if(isset($_POST['compare']))
 			   $insertlist_a = $list_a[$r];
 			   $insertt20 = $t20[$r];
 			   
+			   $inserttest2 = $test2[$r];
+			   $insertodi2 = $odi2[$r];
+			   $insertt20i2 = $t20i2[$r];
+			   $insertfirst_c2 = $first_c2[$r];
+			   $insertlist_a2 = $list_a2[$r];
+			   $insertt202 = $t202[$r];
 			  
 			   
 			   
-			   $sql = "INSERT INTO fetchdatatest(Search_query,Tests,ODIs,T20IS,First_class,List_A,T20s)VALUES('$se','$inserttest','$insertodi','$insertt20i','$insertfirst_c','$insertlist_a','$insertt20')";
+			   $sql = "INSERT INTO battingdata(Search_query,Tests,ODIs,T20IS,First_class,List_A,T20s)VALUES('$se','$inserttest','$insertodi','$insertt20i','$insertfirst_c','$insertlist_a','$insertt20')";
 			   $result = $db->query($sql);
-			   $error = "Success";
-				
+			   
+			   $sql2 = "INSERT INTO bowlingdata(Search_query,Tests,ODIs,T20IS,First_class,List_A,T20s)VALUES('$se','$inserttest2','$insertodi2','$insertt20i2','$insertfirst_c2','$insertlist_a2','$insertt202')";
+			   $result2 = $db->query($sql2);
+			   
+			   echo "<script>alert(Success);</script>";
 			}
 		     
 		   
@@ -245,7 +408,7 @@ if(isset($_POST['compare']))
          
         
 		 
-			
+		}
          
         
 

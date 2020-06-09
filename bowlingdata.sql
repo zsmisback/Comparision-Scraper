@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 09, 2020 at 03:39 PM
+-- Generation Time: Jun 09, 2020 at 10:09 PM
 -- Server version: 10.4.10-MariaDB
 -- PHP Version: 7.3.12
 
@@ -25,10 +25,10 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `fetchdatatest`
+-- Table structure for table `bowlingdata`
 --
 
-CREATE TABLE `fetchdatatest` (
+CREATE TABLE `bowlingdata` (
   `ID` int(255) NOT NULL,
   `Search_query` varchar(255) NOT NULL,
   `Tests` varchar(255) NOT NULL,
@@ -44,9 +44,9 @@ CREATE TABLE `fetchdatatest` (
 --
 
 --
--- Indexes for table `fetchdatatest`
+-- Indexes for table `bowlingdata`
 --
-ALTER TABLE `fetchdatatest`
+ALTER TABLE `bowlingdata`
   ADD PRIMARY KEY (`ID`);
 
 --
@@ -54,10 +54,10 @@ ALTER TABLE `fetchdatatest`
 --
 
 --
--- AUTO_INCREMENT for table `fetchdatatest`
+-- AUTO_INCREMENT for table `bowlingdata`
 --
-ALTER TABLE `fetchdatatest`
-  MODIFY `ID` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=533;
+ALTER TABLE `bowlingdata`
+  MODIFY `ID` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=823;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

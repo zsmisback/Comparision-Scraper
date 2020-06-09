@@ -1,6 +1,8 @@
 <?php
 
-include 'getdata.php';
+
+include 'Back_End/getdata.php';
+
 
 ?>
 
@@ -29,7 +31,7 @@ include 'getdata.php';
 
 <h3 id='user' class='text-center'>Comparision Scraper</h3>
 
-<input type='text' id = 'cr1' name = 'cricketer1' class='form-control mb-4' placeholder = 'Enter the name of the first cricketer' value='<?php echo $cricket1; ?>'/>
+<input type='text' id = 'cr1' name = 'cricketer1' class='form-control mb-4' placeholder = 'Enter the name of the first cricketer'/>
 <br>
 <div class='form-group'>
 Select the players country:
@@ -144,7 +146,7 @@ Select the players country:
 </div>
 <h4 class='text-center'>VS</h4>
 <br>
-<input type="text" class="form-control mb-4" id="cr2" name="cricketer2" placeholder="Enter the name of the second cricketer" value='<?php echo $cricket2; ?>'/>
+<input type="text" class="form-control mb-4" id="cr2" name="cricketer2" placeholder="Enter the name of the second cricketer"/>
 <br>
 <div class='form-group'>
 Select the players country:<select class='form-control' id='criccountry2' name='cricketcountry2'>
@@ -254,9 +256,11 @@ Select the players country:<select class='form-control' id='criccountry2' name='
    <option value="turkey">turkey</option>
 </select>
 </div>
+<br>
 
 
-<p class='err' id='error'><?php echo $error; ?></p>
+
+<p class='err' id='error'></p>
 <button type="submit" id='comparebtn' class="btn btn-dark btn-block btn-lg" name='compare' >Submit</button>
 </form>
 
@@ -267,4 +271,5 @@ Select the players country:<select class='form-control' id='criccountry2' name='
 
 </script>
 </body>
+</html>
 </html>
