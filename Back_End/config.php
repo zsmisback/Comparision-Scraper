@@ -1,8 +1,8 @@
 <?php
 $servername = "localhost";
 $username = "root";
-$password = "123456";
-$dbname = "users";
+$password = "";
+$dbname = "merger";
 
 
 $db = new mysqli($servername, $username, $password ,$dbname);
